@@ -79,6 +79,8 @@ app.use((req, res, next) => { // adding success and error globally now available
 const productRoutes = require('./routes/product');
 const reviewRoutes = require('./routes/review');
 const authRoutes = require('./routes/auth');
+const cartRoutes = require('./routes/cart');
+const productApi = require('./routes/api/productapi');
 
 
 
@@ -86,10 +88,12 @@ const authRoutes = require('./routes/auth');
 app.use(productRoutes);
 app.use(reviewRoutes);
 app.use(authRoutes);
+app.use(productApi);
+app.use(cartRoutes);
 
 
 app.get('/', (req, res) => {
-    res.send('home page is empty')
+    res.render('home')
 })
 
 

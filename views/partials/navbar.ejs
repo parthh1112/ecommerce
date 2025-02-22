@@ -33,9 +33,22 @@
 
             <a href="#" class="nav-link text-capitalize">Hello <%= currentUser.username%> </a>
 
-            <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i>
-              <sup><span class="badge bg-danger">2</span></sup>
+
+
+
+
+            <a href="/user/cart" class="nav-link"><i class="fas fa-shopping-cart"></i>
+              <sup><span class="badge bg-danger"><%=currentUser.cart.length%></span></sup>
             </a>
+
+
+
+
+
+
+
+
+
             <a href="/logout" class="nav-link">Logout</a>
             <% } %>
       </div>

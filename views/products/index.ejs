@@ -15,10 +15,35 @@
                 <%=product.avgRating%> &star; | <%=product.reviews.length%>
               </span>
               <div class="card-body">
-                <h5 class="card-title d-flex justify-content-between align-items-center"><span>
+                <h5 class="card-title d-flex justify-content-between align-items-center">
+                  <span>
                     <%= product.name %>
-                  </span> <a href="#" class="btn"><span><i class="far fa-heart"></i></span></a></h5>
-                <p class="card-text fw-light"><%= product.desc.substring(0,101)%>...</p>
+                  </span>
+
+
+
+                  <span class="btn like-button bg-light rounded-circle" product-id="<%=product._id%>">
+ 
+                    <% if(currentUser && currentUser.wishList.includes(product._id)){ %>
+
+                      <i class="fas fa-heart"></i>
+                      <% }else {%>
+                          <i class="far fa-heart"></i>
+                      <% } %> 
+
+
+
+
+                  </span>
+
+
+
+
+                  
+                </h5>
+                <p class="card-text fw-light">
+                  <%= product.desc.substring(0,101)%>...
+                </p>
                 <% if(product.reviews.length){ %>
                   <p class="text-muted">
                     <%=product.reviews.length%> reviews
@@ -37,3 +62,21 @@
           <%}%>
       </div>
   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/comman.js"></script>

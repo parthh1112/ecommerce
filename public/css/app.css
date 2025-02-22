@@ -12,7 +12,9 @@ main{
     height: 210px;
     padding: 10px;
 }
-
+.fas.fa-heart{
+    color:red;
+}
 .show-btn{
     background-color: var(--main-color);
     color:white;

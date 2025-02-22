@@ -7,15 +7,26 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    role:{
-        type:String,
+    role: {
+        type: String,
         required: true,
-        default:'buyer'        
-    }
+        default: 'buyer'
+    },
+    wishList: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ],
+    cart: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ]
 })
 userSchema.plugin(passportLocalMongoose)
 const User = mongoose.model('User', userSchema)
 module.exports = User
 
 
- 
