@@ -6,6 +6,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 const express = require('express');
 const path = require('path');
+const serverless = require('serverless-http')
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
@@ -19,10 +20,9 @@ const User = require("./models/user")
 const MongoStore = require('connect-mongo')
 
 
-mongoose.connect(`${process.env.dbUrl}`)
+mongoose.connect(process.env.dbUrl)
     .then(() => console.log('DB Connected'))
     .catch((err) => console.log(err));
-
 
 
 app.engine('ejs', ejsMate);
@@ -94,6 +94,7 @@ const reviewRoutes = require('./routes/review');
 const authRoutes = require('./routes/auth');
 const cartRoutes = require('./routes/cart');
 const productApi = require('./routes/api/productapi');
+const { error } = require('console');
 
 
 
@@ -115,3 +116,12 @@ const port = 4000;
 app.listen(port, () => {
     console.log(`server running at port ${port}`);
 });
+
+app.all('*',(req,res)=>{
+    res.render('error',{err:"you are visiting wrong url!!!"})
+})
+
+
+
+app.use('/.netlify/functions/api',router)
+module.exports.handler  = serverless(app)
